@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">The Golden Tiger book</string>
+    <string name="title_activity_book_detail">BookDetail</string>
+    <string name="title_activity_book_details">BookDetails</string>
+</resources>
