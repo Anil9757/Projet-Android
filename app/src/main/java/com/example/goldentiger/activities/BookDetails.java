@@ -1,7 +1,11 @@
 package com.example.goldentiger.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +31,7 @@ public class BookDetails extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras(); //Initilizaze this variable to check if extras are null or not.
 
-        String title ="", authors ="", description="" , categories ="", publishDate="",thumbnail ="";
+        String title ="", authors ="", description="" , categories ="", publishDate="",thumbnail ="", info="";
         if(extras != null){
             title = extras.getString("book_title");
             authors = extras.getString("book_author");
@@ -35,6 +39,7 @@ public class BookDetails extends AppCompatActivity {
             categories = extras.getString("book_categories");
             publishDate = extras.getString("book_publish_date");
             thumbnail = extras.getString("book_thumbnail");
+            info = extras.getString("book_info");
         }
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar);
@@ -45,6 +50,7 @@ public class BookDetails extends AppCompatActivity {
         TextView tDescription = findViewById(R.id.text_description);
         TextView tCategory = findViewById(R.id.i_categorie);
         TextView tDatePublish = findViewById(R.id.i_publish_date);
+        TextView tInformation = findViewById(R.id.book_info);
 
         ImageView iThumbnail = findViewById(R.id.i_thumbnail);
 
@@ -53,6 +59,18 @@ public class BookDetails extends AppCompatActivity {
         tDescription.setText(description);
         tCategory.setText(categories);
         tDatePublish.setText(publishDate);
+
+        final String InfoBook = info;
+
+        tInformation.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(InfoBook));
+                startActivity(i);
+            }
+        });
+
 
         collapsingToolbarLayout.setTitle(title);
 
