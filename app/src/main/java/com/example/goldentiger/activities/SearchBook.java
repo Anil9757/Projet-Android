@@ -31,7 +31,7 @@ import java.util.*;
 
 public class SearchBook extends AppCompatActivity {
 
-    private final String JSON_URL = "https://www.googleapis.com/books/v1/volumes?q=description:";
+    private final String JSON_URL = "https://www.googleapis.com/books/v1/volumes?q=";
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
     private List<BookView> lstBook;
