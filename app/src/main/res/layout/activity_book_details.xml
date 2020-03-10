@@ -20,7 +20,7 @@
             app:title="Anime Title"
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp">
-            
+
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -47,6 +47,20 @@
                         android:background="@drawable/loading"
                         android:id="@+id/i_thumbnail"
                         android:scaleType="centerCrop"/>
+
+                    <TextView
+                        android:id="@+id/book_info"
+                        android:layout_width="70dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/linkbackground"
+                        android:text="info"
+                        android:padding="5dp"
+                        android:textSize="15sp"
+                        android:textColor="#cf9e00"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"/>
 
                 </LinearLayout>
 
@@ -85,17 +99,6 @@
                         android:text="Category"
                         android:id="@+id/i_categorie"/>
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/i_price"
-                        android:text="175 EG"
-                        android:layout_marginTop="5dp"
-                        android:textColor="#fff"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:paddingRight="10dp"/>
 
 
                 </LinearLayout>
