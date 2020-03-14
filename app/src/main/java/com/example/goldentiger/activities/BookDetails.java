@@ -17,6 +17,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.goldentiger.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
+import com.example.goldentiger.model.BookFavoris;
+
 public class BookDetails extends AppCompatActivity {
 
     @Override
@@ -52,6 +54,8 @@ public class BookDetails extends AppCompatActivity {
         TextView tDatePublish = findViewById(R.id.i_publish_date);
         TextView tInformation = findViewById(R.id.book_info);
 
+        TextView tFavoris = findViewById(R.id.book_favoris);
+
         ImageView iThumbnail = findViewById(R.id.i_thumbnail);
 
         tTitle.setText(title);
@@ -68,6 +72,23 @@ public class BookDetails extends AppCompatActivity {
             {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(InfoBook));
                 startActivity(i);
+            }
+        });
+
+
+
+        tFavoris.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                TextView tTitle = findViewById(R.id.i_book_title);
+                TextView tAuthors = findViewById(R.id.i_author);
+                String Title = tTitle.getText().toString();
+                String Authors = tAuthors.getText().toString();
+                BookFavoris newFavorite = new BookFavoris(Title, Authors);
+                newFavorite.save();
+
+                Toast.makeText(getApplicationContext(),""+ newFavorite.getTitle(), Toast.LENGTH_LONG).show();
             }
         });
 
