@@ -1,4 +1,4 @@
-package com.example.booksearchengine.activities;
+package com.example.goldentiger.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +14,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.booksearchengine.model.BookFavoris;
+import com.example.goldentiger.model.BookFavoris;
 
-import com.example.booksearchengine.R;
+import com.example.goldentiger.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
