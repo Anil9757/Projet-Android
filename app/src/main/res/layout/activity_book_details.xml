@@ -76,6 +76,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/i_book_title"
                         android:text="Book Title"
+                        android:textColor="#ffff"
                         android:textStyle="bold"
                         android:textSize="18sp" />
 
@@ -83,11 +84,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="author"
+                        android:textColor="#ffff"
                         android:layout_marginTop="5dp"
                         android:id="@+id/i_author"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="#ffff"
                         android:text="Publish Date"
                         android:layout_marginTop="5dp"
                         android:id="@+id/i_publish_date"/>
@@ -97,14 +100,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Category"
+                        android:textColor="#ffff"
                         android:id="@+id/i_categorie"/>
 
                     <TextView
                         android:id="@+id/book_favoris"
-                        android:layout_width="70dp"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/linkbackground"
-                        android:text="favoris"
+                        android:drawableLeft="@drawable/ic_star_black_24dp"
                         android:padding="5dp"
                         android:textSize="15sp"
                         android:textColor="#cf9e00"
