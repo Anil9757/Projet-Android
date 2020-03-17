@@ -16,6 +16,7 @@ public class SimpleDialogFragment extends DialogFragment {
 
     @NonNull
     @Override
+    //Fragment sous forme de Dialog Fragment qui s'active uniquement s'il n'y pas de connexion à internet.
     public Dialog onCreateDialog (Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
