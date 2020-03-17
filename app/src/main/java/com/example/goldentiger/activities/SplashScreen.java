@@ -11,6 +11,7 @@ import com.example.goldentiger.R;
 public class SplashScreen extends AppCompatActivity {
 
     @Override
+    //SplashScreen pour introduire le logo du Corbeau et ensuite affiché la page principale avec le menu principale.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
