@@ -33,18 +33,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/search_buttton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"/>
 
         <Button
             android:id="@+id/delete_buttton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:layout_marginLeft="50dp"/>
+            android:text="Delete all" />
     </LinearLayout>
 
     <ListView
