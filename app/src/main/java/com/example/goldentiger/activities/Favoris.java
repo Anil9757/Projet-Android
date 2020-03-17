@@ -31,11 +31,8 @@ public class Favoris extends AppCompatActivity {
     private ListView mListView;
 
     private EditText search_book;
-    private TextView message_error;
 
     ArrayAdapter<BookFavoris> adapter;
-
-    private ArrayList<BookFavoris> bookFavorisArrayList;
 
     BookFavoris book = new BookFavoris();
 
@@ -47,21 +44,27 @@ public class Favoris extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoris);
 
+        //EditText
         search_book = findViewById(R.id.i_search_box);
 
         mListView = (ListView) findViewById(R.id.listView);
 
+        //On liste tous les éléments se trouvant dans la base de données BookFavoris.
         List<BookFavoris> list = BookFavoris.listAll(BookFavoris.class);
 
+        //On mets en place l'adapter pour effectuer l'affichage de la liste.
         adapter = new ArrayAdapter<BookFavoris>(Favoris.this, android.R.layout.simple_list_item_1, list);
         mListView.setAdapter(adapter);
 
+        //Usage d'un filter pour effectuer une recherche plus dynamique sur l'application.
+        //L'utilisateur tape le début ou un élément de la liste de la liste pour trouver par exemple le titre de l'oeuvre et son auteur.
         search_book.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
+            //On utilise cette fonction générer pour trouver l'élement que l'on souhaite trouver.
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 (Favoris.this).adapter.getFilter().filter(s);
@@ -73,6 +76,7 @@ public class Favoris extends AppCompatActivity {
             }
         });
 
+        //Bouton permettant d'actionner la fonction DeleteAll
         button2 = (Button) findViewById(R.id.delete_buttton);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,35 +87,7 @@ public class Favoris extends AppCompatActivity {
 
     }
 
-    public void searchBook(String title){
-
-        List<BookFavoris> listName = BookFavoris.find(BookFavoris.class, "title = ? ", title);
-
-        adapter = new ArrayAdapter<BookFavoris>(Favoris.this, android.R.layout.simple_list_item_1, listName);
-        mListView.setAdapter(adapter);
-
-    }
-
-    public void BuyBook(String title){
-
-        List<BookFavoris> listName = BookFavoris.find(BookFavoris.class, "title = ? ", title);
-
-        adapter = new ArrayAdapter<BookFavoris>(Favoris.this, android.R.layout.simple_list_item_1, listName);
-        mListView.setAdapter(adapter);
-
-    }
-
-    public void DeleteBook(String title){
-
-        List<BookFavoris> listName = BookFavoris.listAll(BookFavoris.class);
-        BookFavoris.deleteAll(BookFavoris.class);
-        List<BookFavoris> list = BookFavoris.listAll(BookFavoris.class);
-
-        adapter = new ArrayAdapter<BookFavoris>(Favoris.this, android.R.layout.simple_list_item_1, list);
-        mListView.setAdapter(adapter);
-
-    }
-
+    //Fonction permettant de supprimer toutes la liste
     public void DeleteAllBook(){
 
         List<BookFavoris> listName = BookFavoris.listAll(BookFavoris.class);
