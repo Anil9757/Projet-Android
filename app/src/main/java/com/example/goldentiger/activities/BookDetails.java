@@ -22,6 +22,12 @@ import com.example.goldentiger.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.example.goldentiger.model.BookFavoris;
 
+//Cette activité s'affiche lorsqu'on clique sur un livre se trouvant dans le RecyclerView.
+//On peut voir les détails du livre comme le nom de l'auteur, la catégorie, la date de publication.
+//On peut voir la description du livre.
+//Il y a un bouton Info qui permet d'aller sur différents site liés au livre: Google Book Store ou E-book pour ainsi acheté le livre ou voir les avis.
+//L'utilisateur peut ajouter le livre dans ses favoris.
+
 public class BookDetails extends AppCompatActivity {
 
     @Override
@@ -34,9 +40,12 @@ public class BookDetails extends AppCompatActivity {
 
         //Receive the data from Json
 
-        Bundle extras = getIntent().getExtras(); //Initilizaze this variable to check if extras are null or not.
+        Bundle extras = getIntent().getExtras(); //Initilisation de la variable pour voir si les extra son null ou s'il y a une valeur.
 
         String title ="", authors ="", description="" , categories ="", publishDate="",thumbnail ="", info="";
+
+        //On associe les variable string aux valeurs Json récupéré dans l'activité SearchBook.java
+
         if(extras != null){
             title = extras.getString("book_title");
             authors = extras.getString("book_author");
@@ -49,6 +58,8 @@ public class BookDetails extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsingtoolbar);
         collapsingToolbarLayout.setTitleEnabled(true);
+
+        //association des composants designs avec les id du XML
 
         TextView tTitle = findViewById(R.id.i_book_title);
         TextView tAuthors = findViewById(R.id.i_author);
@@ -69,6 +80,7 @@ public class BookDetails extends AppCompatActivity {
 
         final String InfoBook = info;
 
+        //Le bouton Info emmènera l'utilisateur vers une page lié au livre, soit pour l'acheter, soit pour voir les commentaires et notes sur le livres.
         tInformation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
@@ -79,7 +91,7 @@ public class BookDetails extends AppCompatActivity {
         });
 
 
-
+        //Insertion des détails du livres (Titre et noms d'Auteurs) dans la base de données BookFavoris (BDD Sugar ORM)
         tFavoris.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
@@ -101,6 +113,7 @@ public class BookDetails extends AppCompatActivity {
 
         RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading).error(R.drawable.loading);
 
+        //Affichage de la photo de couverture du livre part l'intermédiaire de Glide et de l'url de l'image.
         Glide.with(this).load(thumbnail).apply(requestOptions).into(iThumbnail);
 
     }
