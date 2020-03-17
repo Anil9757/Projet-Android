@@ -73,14 +73,16 @@ public class SearchBook extends AppCompatActivity {
 
     }
 
-
+    //Fonction permettant d'effectuer la recherche à travers le parcours de l'API GOOGLE Book API
     private void searchBook(){
 
         String search_query = search_text.getText().toString(); //Writing the name of the book or description.
 
+        //Test si l'application est connecté ou non à internet
         boolean is_connected = NetworkState(this);
         if(!is_connected)
         {
+            //Si ce n'est pas le cas, un fragment sous forme de dialogue apparaitra
             DialogFragment simpleDialogFragment = new SimpleDialogFragment();
             simpleDialogFragment.show(getSupportFragmentManager(), "Wifi Dialog");
            // message_error.setText("Echec de connexion Internet");
@@ -88,12 +90,14 @@ public class SearchBook extends AppCompatActivity {
            // message_error.setVisibility(View.VISIBLE);
             return;
         }
-
+        //Si l'EditText et vide alors un toast apparaitra pour forcer l'utilisateur à mettre quelque chose dedans.
         if(search_query.equals(""))
         {
             Toast.makeText(this,"Veuillez rentrer un nom de livre, ou une petite description, ou un thème permettant de trouver un livre ",Toast.LENGTH_SHORT).show();
             return;
         }
+
+        //Lancement de l'algorithm qui permettra de faire une recherhe de livres en faisant un parcours en détails des valeurs JSON.
         String final_query =search_query.replace(" ","+");
         Uri uri= Uri.parse(JSON_URL+final_query);
         Uri.Builder buider = uri.buildUpon();
@@ -106,6 +110,9 @@ public class SearchBook extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+
+                        //Si les éléments ne sont pas existant dans les valeurs JSON de l'API Google Book
+                        //Les éléments seront affiché ainsi dans le design
                         String title = "";
                         String author = "";
                         String datePublished = "Pas encore valable";
@@ -116,16 +123,20 @@ public class SearchBook extends AppCompatActivity {
                         String price = "Prix non-disponible";
 
                         try {
+                            //On entre dans le tableau items pour récupérer les valeurs
                             JSONArray items = response.getJSONArray("items");
 
+                            //Récupération des valeurs json dans le tableau items.
                             for (int i = 0; i < items.length(); i++) {
                                 JSONObject item = items.getJSONObject(i);
                                 JSONObject volumeInfo = item.getJSONObject("volumeInfo");
 
-
+                                //On récupère les différents objets.
                                 try {
                                     title = volumeInfo.getString("title");
 
+                                    //Un livre peu être écrit par un ou plusieurs auteurs.
+                                    //On doit donc parcourir le tableau autors
                                     JSONArray authors = volumeInfo.getJSONArray("authors");
                                     if (authors.length() == 1) {
                                         author = authors.getString(0);
@@ -147,16 +158,19 @@ public class SearchBook extends AppCompatActivity {
                                 } catch (Exception e) {
 
                                 }
+                                //On récupère l'url de l'image qu'on utilisera pour afficher l'image de la première de couverture avec la librairie Glide.
                                 String thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
 
                                 String previewLink = volumeInfo.getString("previewLink");
                                 String url = volumeInfo.getString("infoLink");
 
 
+                                //On insère les éléments dans la liste de Book view
                                 lstBook.add(new BookView(title, author, datePublished, description, categories
                                         , thumbnail, price, pageCount, url));
 
 
+                                //Affichage des éléments dans le RecyclerView
                                 rAdapter = new RecyclerViewAdapter(SearchBook.this, lstBook);
                                 recyclerView.setAdapter(rAdapter);
                             }
@@ -174,6 +188,7 @@ public class SearchBook extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //Fonction permettant de vérifier si on a bien une connexion internet
     private boolean NetworkState(Context context) {
         ConnectivityManager cm =
                 (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
