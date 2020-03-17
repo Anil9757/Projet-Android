@@ -85,9 +85,6 @@ public class SearchBook extends AppCompatActivity {
             //Si ce n'est pas le cas, un fragment sous forme de dialogue apparaitra
             DialogFragment simpleDialogFragment = new SimpleDialogFragment();
             simpleDialogFragment.show(getSupportFragmentManager(), "Wifi Dialog");
-           // message_error.setText("Echec de connexion Internet");
-           // recyclerView.setVisibility(View.INVISIBLE);
-           // message_error.setVisibility(View.VISIBLE);
             return;
         }
         //Si l'EditText et vide alors un toast apparaitra pour forcer l'utilisateur à mettre quelque chose dedans.
