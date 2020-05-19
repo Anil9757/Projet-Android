@@ -20,13 +20,6 @@ public class MainActivity extends AppCompatActivity {
     //Book Favoris button
     private Button button2;
 
-    //              _/\__
-    //        ---==/    \\
-    //             |.    \|\
-    //             |  )    \\\
-    //             \_/ |   //|\\
-    //                /    \\\/\\
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
